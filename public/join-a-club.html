@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Join A Club</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheets/join-a-club.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="javascripts/event_news_club.js" defer></script>
+
+</head>
+
+<body>
+    <div id="coolfroggyclub">
+        <nav>
+            <div class="nav-container" onload="check_login()">
+                <span><a href="index.html" class="logo"><img src="images/CoolFroggyLogo.png"
+                            alt="Cool Froggy Club logo"></a></span>
+
+                <div class="nav-menu">
+                    <div><a href="about-us.html">About us</a></div>
+                    <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                    <div><a href="latest-news.html">Latest News</a></div>
+                    <div><a href="join-a-club.html">Join A Club</a></div>
+                    <div class="login" v-show="!signedIn"><a v-bind:href="URL">{{ buttonName }}</a></div>
+                    <div class="login" v-show="signedIn">
+                        <a>{{ buttonName }}</a>
+                        <ul class="account-dropdown">
+                            <li><a class="account-dropdown-item" v-bind:href="URL">Your Profile</a></li>
+                            <li><a v-bind:class="show_your_club" v-bind:href="URL_manager">Your Club</a></li>
+                            <li><button class="account-dropdown-item" type="button" v-on:click="signedIn=false; logout();">Sign Out</button></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button type="button" v-bind:class="menu" @click="toggleMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div v-bind:class="dropdown">
+                <div><a href="about-us.html">About us</a></div>
+                <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                <div><a href="latest-news.html">Latest News</a></div>
+                <div><a href="join-a-club.html">Join A Club</a></div>
+                <div class="login" v-show="!signedIn"><a v-bind:href="URL">{{ buttonName }}</a></div>
+                <div class="login" v-show="signedIn">
+                    <a>{{ buttonName }}</a>
+                    <ul class="account-dropdown-2">
+                        <li><a class="account-dropdown-item-2" v-bind:href="URL">Your Profile</a></li>
+                        <li><a v-bind:class="show_your_club" v-bind:href="URL_manager">Your Club</a></li>
+                        <li><button class="account-dropdown-item-2" type="button" v-on:click="signedIn=false; logout();">Sign Out</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div aria-label="Breadcrumb" class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><span aria-current="page">Join A Club</span></li>
+            </ul>
+        </div>
+
+
+
+        <main>
+            <article>
+                <div class="clubs-collection">
+                    <!-- Clubs Nav Bar-->
+                    <div class="clubs-nav">
+                        <div class="left-clubs-nav">
+                            <h1>Clubs</h1>
+                        </div>
+                    </div>
+
+                    <!-- CLubs List -->
+                    <div class="clubs-list">
+
+                        <div class="indv-club" v-for="club in all_clubs">
+                            <div class="left-club-side">
+                                <h2> {{ club.club_name }} </h2>
+                                <h3> {{ club.club_description }} </h3>
+                                <h3> {{ club.phone }} </h3>
+                                <h3> {{ club.email }} </h3>
+                            </div>
+                            <div class="right-club-side">
+                                <button class="login" type="button" v-on:click="join_club(club.club_id)">Join</button>
+                                <!-- CREATE FUNCTION TO ALLOW AUTOMATIC ENROL INTO CLUB AS MEMBER -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer class="social-media">
+            <a href="https://www.facebook.com"><img src="images/facebook-icon.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com"><img src="images/instagram-icon.png" alt="Instagram"></a>
+            <a href="https://twitter.com"><img src="images/twitter-icon.png" alt="Twitter"></a>
+        </footer>
+    </div>
+</body>
+
+</html>

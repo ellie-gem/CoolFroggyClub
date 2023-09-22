@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Cool Froggy Club</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="stylesheets/index.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="javascripts/home-slideshow.js" defer></script>
+    <script src="javascripts/event_news_club.js" defer></script>
+</head>
+
+<body>
+    <div id="coolfroggyclub">
+
+
+    <nav>
+        <div class="nav-container" onload="check_login()">
+            <span><a href="index.html" class="logo"><img src="images/CoolFroggyLogo.png" alt="Cool Froggy Club logo"></a></span>
+
+            <div class="nav-menu">
+                <div><a href="about-us.html">About us</a></div>
+                <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                <div><a href="latest-news.html">Latest News</a></div>
+                <div><a href="join-a-club.html">Join A Club</a></div>
+                <div class="login" v-show="!signedIn"><a v-bind:href="URL">{{ buttonName }}</a></div>
+                <div class="login" v-show="signedIn">
+                    <a>{{ buttonName }}</a>
+                    <ul class="account-dropdown">
+                        <li><a class="account-dropdown-item" v-bind:href="URL">Your Profile</a></li>
+
+                        <!-- make sure this is hidden when it's not club-manager-->
+                        <li><a v-bind:class="show_your_club" v-bind:href="URL_manager">Your Club</a></li>
+
+                        <li><button class="account-dropdown-item" type="button" v-on:click="signedIn=false; logout();">Sign Out</button></li>
+                    </ul>
+                </div>
+            </div>
+
+            <button type="button" v-bind:class="menu" @click="toggleMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div v-bind:class="dropdown">
+            <div><a href="about-us.html">About us</a></div>
+            <div><a href="upcoming-events.html">Upcoming Events</a></div>
+            <div><a href="latest-news.html">Latest News</a></div>
+            <div><a href="join-a-club.html">Join A Club</a></div>
+            <div class="login" v-show="!signedIn"><a v-bind:href="URL">{{ buttonName }}</a></div>
+            <div class="login" v-show="signedIn">
+                <a>{{ buttonName }}</a>
+                <ul class="account-dropdown-2">
+                    <li><a class="account-dropdown-item-2" v-bind:href="URL">Your Profile</a></li>
+
+                    <!-- make sure this is hidden when it's not club-manager-->
+                    <li><a v-bind:class="show_your_club" v-bind:href="URL_manager">Your Club</a></li>
+
+                    <li><button class="account-dropdown-item-2" type="button" v-on:click="signedIn=false; logout();">Sign Out</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+	<main>
+
+        <div id="show-slides">
+            <div class="slideshow-container">
+                <!-- Full-width images with number and caption text -->
+                <div class="mySlides fade" v-for="(slide, index) in slides">
+                    <div class="numbertext">{{ index+1 }} / {{ slides.length }}</div>
+                    <img v-bind:src="slide.image" style="width:100%" v-bind:alt="slide.alt">
+                    <div class="text">{{ slide.text }}</div>
+                </div>
+
+                <!-- Next and previous buttons -->
+                <a class="prev" v-on:click="plusSlides(-1)">&#10094;</a>
+                <a class="next" v-on:click="plusSlides(1)">&#10095;</a>
+
+            </div>
+
+            <!-- The dots/circles -->
+            <div class="dots-container">
+                <span class="dot" v-on:click="currentSlide(1)"></span>
+                <span class="dot" v-on:click="currentSlide(2)"></span>
+                <span class="dot" v-on:click="currentSlide(3)"></span>
+            </div>
+
+        </div>
+
+		<div class="upcoming-events" id="events">
+            <div class="center">
+                <h2>Upcoming Events</h2>
+                <ul v-for="event in all_events" v-bind:key="event.event_id">
+                    <li><a href="upcoming-events.html">{{ event.event_name }}</a></li>
+                </ul>
+            </div>
+		</div>
+
+		<div class="latest-news">
+            <div class="center">
+                <h2>Latest News</h2>
+                <ul>
+                    <li v-for="news in all_news">
+                        <h3>{{ news.title }}</h3>
+                        <h3>By {{ news.author }}</h3>
+                        <p>{{ news.post_message }}</p>
+                    </li>
+                </ul>
+            </div>
+		</div>
+		<div class="gallery">
+			<h2>Gallery</h2>
+			<ul>
+				<li><img src="images/gallery-image-1.jpg" alt="Gallery Image 1"></li>
+				<li><img src="images/gallery-image-2.jpg" alt="Gallery Image 2"></li>
+				<li><img src="images/gallery-image-3.jpg" alt="Gallery Image 3"></li>
+				<li><img src="images/gallery-image-4.jpg" alt="Gallery Image 4"></li>
+			</ul>
+		</div>
+	</main>
+
+    <footer class="social-media">
+          <a href="https://www.facebook.com"><img src="images/facebook-icon.png" alt="Facebook"></a>
+          <a href="https://www.instagram.com"><img src="images/instagram-icon.png" alt="Instagram"></a>
+          <a href="https://twitter.com"><img src="images/twitter-icon.png" alt="Twitter"></a>
+    </footer>
+</div>
+</body>
+</html>

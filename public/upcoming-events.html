@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Events</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheets/upcoming-events.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="javascripts/event_news_club.js" defer></script>
+</head>
+
+<body>
+
+    <div id="coolfroggyclub">
+
+        <nav>
+            <div class="nav-container" onload="check_login()">
+                <span><a href="index.html" class="logo"><img src="images/CoolFroggyLogo.png" alt="Cool Froggy Club logo"></a></span>
+
+                <div class="nav-menu">
+                    <div><a href="about-us.html">About us</a></div>
+                    <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                    <div><a href="latest-news.html">Latest News</a></div>
+                    <div><a href="join-a-club.html">Join A Club</a></div>
+
+                    <div class="login" v-show="!signedIn"><a v-bind:href="URL">{{ buttonName }}</a></div>
+                    <div class="login" v-show="signedIn">
+                        <a>{{ buttonName }}</a>
+                        <ul class="account-dropdown">
+                            <li><a class="account-dropdown-item" v-bind:href="URL">Your Profile</a></li>
+                            <li><a v-bind:class="show_your_club" v-bind:href="URL_manager">Your Club</a></li>
+                            <li><button class="account-dropdown-item" type="button" v-on:click="signedIn=false; logout();">Sign Out</button></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button type="button" v-bind:class="menu" @click="toggleMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div v-bind:class="dropdown">
+                <div><a href="about-us.html">About us</a></div>
+                <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                <div><a href="latest-news.html">Latest News</a></div>
+                <div><a href="join-a-club.html">Join A Club</a></div>
+                <div class="login" v-show="!signedIn"><a v-bind:href="URL">{{ buttonName }}</a></div>
+                <div class="login" v-show="signedIn">
+                    <a>{{ buttonName }}</a>
+                    <ul class="account-dropdown-2">
+                        <li><a class="account-dropdown-item-2" v-bind:href="URL">Your Profile</a></li>
+                        <li><a v-bind:class="show_your_club" v-bind:href="URL_manager">Your Club</a></li>
+                        <li><button class="account-dropdown-item-2" type="button" v-on:click="signedIn=false; logout();">Sign Out</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div aria-label="Breadcrumb" class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><span aria-current="page">Upcoming Events</span></li>
+            </ul>
+        </div>
+
+
+        <main>
+            <article>
+                <div class="events-collection">
+                    <!-- Events Nav Bar-->
+                    <div class="events-nav">
+                        <div class="left-events-nav">
+                            <h1>Upcoming Events</h1>
+                        </div>
+
+                        <div class="right-events-nav">
+                            <button class="login" type="button" v-on:click="view_event('all')">All</button>
+                            <button class="login" type="button" v-on:click="view_event('past')">Past</button>
+                            <!-- FILTER PAST EVENTS -->
+                            <button class="login" type="button" v-on:click="view_event('upcoming')">Upcoming</button>
+                            <!-- FILTER UPCOMING EVENTS -->
+                        </div>
+
+                    </div>
+
+                    <!-- Events List -->
+
+                    <div class="events-list" id="events">
+
+                        <div class="indv-event" v-for="(event, index) in all_events" v-bind:key="event.event_id">
+                            <div class="left-event-side">
+                                <h2>{{ event.event_name }}</h2>
+                                <h3>{{ event.club_name }}</h3>
+                                <h3>{{ formatDate(event.event_date) }}</h3>
+                                <h3>{{ event.event_location }}</h3>
+                                <div class="event-desc" v-show="show_events[index]">
+                                    <p>{{ event.event_message }}</p>
+                                </div>
+                            </div>
+                            <div class="right-event-side">
+                                <button class="show-deets" type="button" v-show="!show_events[index]" v-on:click="show_full_event(index)">More details</button>
+                                <!-- CREATE FUNCTION TO SHOW EVENTS DESC -->
+                                <button class="show-deets" type="button" v-show="show_events[index]" v-on:click="hide_full_event(index)">See less</button>
+                                <!-- CREATE FUNCTION TO HIDE EVENTS DESC -->
+
+                                <button class="login" type="button" v-on:click="join_event(event.event_id)">RSVP</button>
+                                <!-- CREATE FUNCTION TO RSVP -->
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer class="social-media">
+            <a href="https://www.facebook.com"><img src="images/facebook-icon.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com"><img src="images/instagram-icon.png" alt="Instagram"></a>
+            <a href="https://twitter.com"><img src="images/twitter-icon.png" alt="Twitter"></a>
+        </footer>
+    </div>
+</body>
+
+</html>

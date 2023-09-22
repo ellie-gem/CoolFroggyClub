@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add New Event</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheets/add-events.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="javascripts/event_news_club.js" defer></script>
+</head>
+
+<body>
+    <div id="coolfroggyclub">
+        <nav id="signin">
+            <div class="nav-container" onload="check_login()">
+                <span><a href="index.html" class="logo"><img src="images/CoolFroggyLogo.png"
+                            alt="Cool Froggy Club logo"></a></span>
+
+                <div class="nav-menu">
+                    <div><a href="about-us.html">About us</a></div>
+                    <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                    <div><a href="latest-news.html">Latest News</a></div>
+                    <div><a href="join-a-club.html">Join A Club</a></div>
+                    <div class="login" v-show="!signedIn"><a v-bind:href="URL">{{ buttonName }}</a></div>
+                    <div class="login" v-show="signedIn">
+                        <a>{{ buttonName }}</a>
+                        <ul class="account-dropdown">
+                            <li><a class="account-dropdown-item" v-bind:href="URL">Your Profile</a></li>
+                            <li><a v-bind:class="show_your_club" v-bind:href="URL_manager">Your Club</a></li>
+                            <li><button class="account-dropdown-item" type="button"
+                                    v-on:click="signedIn=false; logout();">Sign Out</button></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button type="button" v-bind:class="menu" @click="toggleMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div v-bind:class="dropdown">
+                <div><a href="about-us.html">About us</a></div>
+                <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                <div><a href="latest-news.html">Latest News</a></div>
+                <div><a href="join-a-club.html">Join A Club</a></div>
+                <div class="login" v-show="!signedIn"><a v-bind:href="URL">{{ buttonName }}</a></div>
+                <div class="login" v-show="signedIn">
+                    <a>{{ buttonName }}</a>
+                    <ul class="account-dropdown-2">
+                        <li><a class="account-dropdown-item-2" v-bind:href="URL">Your Profile</a></li>
+                        <li><a v-bind:class="show_your_club" v-bind:href="URL_manager">Your Club</a></li>
+                        <li><button class="account-dropdown-item-2" type="button"
+                                v-on:click="signedIn=false; logout();">Sign Out</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div aria-label="Breadcrumb" class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="club-manager-profile.html">Club Manager Profile</a></li>
+                <li><span aria-current="page">Add New Event</span></li>
+            </ul>
+        </div>
+
+        <main>
+            <article class="add-event">
+                <h1>Add New Event</h1>
+                <br>
+
+                <form>
+                    <label for="event_name">Event Name:</label>
+                    <input type="text" id="event_name" name="event_name" v-model="event_name">
+
+                    <label for="club-name">Club Name:</label>
+                    <input type="text" id="club-name" name="club-name" v-bind:placeholder="club_name" disabled>
+
+                    <label for="event_date">Event Date:</label>
+                    <input type="date" id="event_date" name="event_date" v-model="event_date">
+
+                    <!-- event time not included in database -->
+                    <!-- <label for="event_time">Event Time:</label>
+                    <input type="time" id="event_time" name="event_time" v-model="event_time"> -->
+
+                    <label for="event_location">Event Location:</label>
+                    <input type="text" id="event_location" name="event_location" v-model="event_location">
+
+                    <label for="privacy">Choose event privacy:</label>
+                    <input type="radio" id="private" name="privacy" value="private" v-model="privacy" required>
+                    <label for="private">Private</label>
+                    <input type="radio" id="public" name="privacy" value="public" v-model="privacy">
+                    <label for="public">Public</label>
+
+                    <label for="event_info">Event Information:</label>
+                    <input type="text" id="event_info" name="event_info" v-model="event_message">
+
+                    <!-- have to make input type to button so that after clicking in login won't out the queries in the url anymore -->
+                    <input type="button" value="Add New Event" v-on:click="addEvent()">
+                </form>
+
+            </article>
+
+        </main>
+
+        <footer class="social-media">
+            <a href="https://www.facebook.com"><img src="images/facebook-icon.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com"><img src="images/instagram-icon.png" alt="Instagram"></a>
+            <a href="https://twitter.com"><img src="images/twitter-icon.png" alt="Twitter"></a>
+        </footer>
+    </div>
+</body>
+
+</html>

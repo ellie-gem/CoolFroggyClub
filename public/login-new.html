@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheets/login-new.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="javascripts/signin.js" defer></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+    <div id="signin">
+        <nav>
+            <div class="nav-container">
+                <span><a href="index.html" class="logo"><img src="images/CoolFroggyLogo.png" alt="Cool Froggy Club logo"></a></span>
+
+                <div class="nav-menu">
+                    <div><a href="about-us.html">About us</a></div>
+                    <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                    <div><a href="latest-news.html">Latest News</a></div>
+                    <div><a href="join-a-club.html">Join A Club</a></div>
+                </div>
+
+                <button type="button" v-bind:class="menu" @click="toggleMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div v-bind:class="dropdown">
+                <div><a href="about-us.html">About us</a></div>
+                <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                <div><a href="latest-news.html">Latest News</a></div>
+                <div><a href="join-a-club.html">Join A Club</a></div>
+            </div>
+        </nav>
+
+        <main>
+            <article class="loginpage">
+                <div v-show="!signin_google">
+                    <h1>Login</h1>
+                    <br>
+                    <form>
+
+                        <label for="user-email">Email</label>
+                        <input type="text" id="user-email" name="user-email" v-model="userEmail">
+
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" v-model="userPassword"><br /><br />
+
+                        <label for="user-type">User Type:</label>
+                        <select class="user-type" name="user-type" v-model="userType" required>
+                            <option value="" disabled selected>Select User Type</option>
+                            <option value="Club Member">Club Member</option>
+                            <option value="Club Manager">Club Manager</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+
+                        <!-- have to make input type to button so that after clicking in login won't out the queries in the url anymore -->
+                        <input type="button" value="Log in" v-on:click="login()">
+
+                    </form>
+                </div>
+
+                <div v-show="signin_google">
+                    <h1>Login</h1>
+                    <br>
+                    <form>
+                        <label for="user-type">User Type:</label>
+                        <select class="user-type" name="user-type" v-model="userType" required>
+                            <option value="" disabled selected>Select User Type</option>
+                            <option value="Club Member">Club Member</option>
+                            <option value="Club Manager">Club Manager</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+
+                        <!-- where google login is -->
+                        <div id="google">
+                            <div id="g_id_onload"
+                                data-client_id="732733926826-h9vfvft404fo0i5eel2713ojb4iflhaq.apps.googleusercontent.com"
+                                data-context="signin" data-ux_mode="popup" data-callback="google_login"
+                                data-auto_prompt="false">
+                            </div>
+                            <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="filled_blue"
+                                data-text="signin_with" data-size="medium" data-logo_alignment="left" data-width="250">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <button v-bind:id="login_option" type="button" v-on:click="toggleGoogle">{{ option_text }}</button>
+
+                <p>Not a member yet? <a href="signup.html">Sign Up now!</a></p>
+            </article>
+
+        </main>
+
+        <footer class="social-media">
+            <a href="https://www.facebook.com"><img src="images/facebook-icon.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com"><img src="images/instagram-icon.png" alt="Instagram"></a>
+            <a href="https://twitter.com"><img src="images/twitter-icon.png" alt="Twitter"></a>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About Us</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheets/about-us.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="javascripts/signin.js" defer></script>
+
+</head>
+
+<body>
+
+    <nav id="signin">
+        <div class="nav-container">
+            <span><a href="index.html" class="logo"><img src="images/CoolFroggyLogo.png" alt="Cool Froggy Club logo"></a></span>
+
+            <div class="nav-menu">
+                <div><a href="about-us.html">About us</a></div>
+                <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                <div><a href="latest-news.html">Latest News</a></div>
+                <div><a href="join-a-club.html">Join A Club</a></div>
+                <div class="login" v-show="!signedIn"><a v-bind:href="URL">{{ buttonName }}</a></div>
+                <div class="login" v-show="signedIn">
+                    <a>{{ buttonName }}</a>
+                    <ul class="account-dropdown">
+                        <li><a class="account-dropdown-item" v-bind:href="URL">Your Profile</a></li>
+                        <li><a v-bind:class="show_your_club" v-bind:href="URL_manager">Your Club</a></li>
+                        <li><button class="account-dropdown-item" type="button" v-on:click="signedIn=false; logout();">Sign Out</button></li>
+                    </ul>
+                </div>
+            </div>
+
+            <button type="button" v-bind:class="menu" @click="toggleMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div v-bind:class="dropdown">
+            <div><a href="about-us.html">About us</a></div>
+            <div><a href="upcoming-events.html">Upcoming Events</a></div>
+            <div><a href="latest-news.html">Latest News</a></div>
+            <div><a href="join-a-club.html">Join A Club</a></div>
+
+            <div class="login" v-show="!signedIn"><a v-bind:href="URL">{{ buttonName }}</a></div>
+            <div class="login" v-show="signedIn">
+                <a>{{ buttonName }}</a>
+                <ul class="account-dropdown-2">
+                    <li><a class="account-dropdown-item-2" v-bind:href="URL">Your Profile</a></li>
+                    <li><a v-bind:class="show_your_club" v-bind:href="URL_manager">Your Club</a></li>
+                    <li><button class="account-dropdown-item-2" type="button" v-on:click="signedIn=false; logout();">Sign Out</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div aria-label="Breadcrumb" class="breadcrumb">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><span aria-current="page">About Us</span></li>
+        </ul>
+    </div>
+
+    <main>
+        <article class="aboutUs">
+            <h1>About Us</h1>
+            <br>
+            <img src="images/about-us.jpg" alt="frog and friend bing chilling">
+            <p>Ribbit ribbit ribbit....</p>
+            <p>Frog and Toad have been the best of friends for as long as they can remember. They've shared many adventures together, from exploring the great outdoors to lounging by the pond on lazy afternoons. They love nothing more than spending time with each other and sharing stories of their latest exploits.</p>
+            <p>One day, as they were lounging by the pond, they had an idea. What if they created a community where friends could come along and hang out with each other? They both loved the idea of creating a place where everyone could feel welcome and included.</p>
+            <p>They started brainstorming, and soon came up with a plan. They decided to build a cozy little clubhouse by the pond where all their friends could come and hang out. They wanted it to be a place where everyone could feel at home, with comfy chairs, warm blankets, and lots of snacks and drinks.</p>
+            <p>Frog and Toad got to work, and soon the clubhouse was built. They invited all their friends to come and check it out, and everyone was thrilled with the new hangout spot. There was plenty of room for everyone, and it quickly became the go-to spot for all their friends.</p>
+            <p>As the days went by, Frog and Toad noticed that their little community was growing. More and more friends were coming along to hang out and share in the fun. They realized that they had created something truly special - a place where friends could come together and feel like they belonged.</p>
+            <p>Frog and Toad were so proud of what they had created. They knew that their little community would continue to grow and thrive, as long as they kept inviting new friends to come and join in the fun. They smiled to each other, knowing that they had started something wonderful - something that would bring friends together for years to come.</p>
+        </article>
+    </main>
+
+    <footer class="social-media">
+          <a href="https://www.facebook.com"><img src="images/facebook-icon.png" alt="Facebook"></a>
+          <a href="https://www.instagram.com"><img src="images/instagram-icon.png" alt="Instagram"></a>
+          <a href="https://twitter.com"><img src="images/twitter-icon.png" alt="Twitter"></a>
+    </footer>
+</body>
+
+</html>

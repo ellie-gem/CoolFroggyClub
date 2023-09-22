@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Signup to Cool Froggy Club!</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheets/signup.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="javascripts/signin.js" defer></script>
+</head>
+
+<body>
+    <div id="signin">
+        <nav>
+            <div class="nav-container">
+                <span><a href="index.html" class="logo"><img src="images/CoolFroggyLogo.png" alt="Cool Froggy Club logo"></a></span>
+
+                <div class="nav-menu">
+                    <div><a href="about-us.html">About us</a></div>
+                    <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                    <div><a href="latest-news.html">Latest News</a></div>
+                    <div><a href="join-a-club.html">Join A Club</a></div>
+                </div>
+
+                <button type="button" v-bind:class="menu" @click="toggleMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div v-bind:class="dropdown">
+                <div><a href="about-us.html">About us</a></div>
+                <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                <div><a href="latest-news.html">Latest News</a></div>
+                <div><a href="join-a-club.html">Join A Club</a></div>
+            </div>
+        </nav>
+
+        <div aria-label="Breadcrumb" class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><span aria-current="page">Sign Up</span></li>
+            </ul>
+        </div>
+
+        <main>
+            <article class="signuppage">
+                <h1>Sign Up</h1>
+                <br>
+
+                <!-- -------------------LINK BACK TO LOGIN PAGE AFTER SIGNING UP------------------------ -->
+                <form v-on:submit.prevent="signup()">
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" name="first-name" v-model="first_name" required>
+
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" name="last-name" v-model="last_name" required>
+
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" v-model="dob" required>
+
+                    <label for="password">Password:</label>
+                    <input v-bind:type="reveal" id="password" name="password" v-model="password" v-on:focus="reveal_message" v-on:input="validatePassword" required>
+
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input v-bind:type="reveal" id="confirm-password" name="confirm-password" v-model="confirm_password" v-on:input="validatePassword" onchange="this.setCustomValidity('')" required>
+
+                    <!-- code referenced from w3schools -->
+                    <div v-bind:class="message">
+                        <div id="set">
+                            <h3>Password must contain the following:</h3>
+                            <i v-bind:id="icon" v-on:click="see" class="far fa-eye"></i>
+                        </div>
+                        <p id="match" v-bind:class="match_validity">Passwords <b>match</b></p>
+                        <p id="letter" v-bind:class="letter_validity">A <b>lowercase</b> letter</p>
+                        <p id="capital" v-bind:class="capital_validity">A <b>capital (uppercase)</b> letter</p>
+                        <p id="number" v-bind:class="number_validity">A <b>number</b></p>
+                        <p id="length" v-bind:class="length_validity">Minimum <b>8 characters</b></p>
+                        <p id="special" v-bind:class="special_validity">A <b>special character</b></p>
+                        <p id="space" v-bind:class="space_validity">No <b>spaces</b></p>
+                    </div>
+
+                    <label for="phone">Mobile Phone:</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter phone number as xxxxxxxxxx" v-model="mobile" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" v-model="email" required>
+
+                    <!-- have to make input type to button so that after clicking in login won't out the queries in the url anymore -->
+                    <input type="submit" class="submit" value="Submit">
+                </form>
+
+            </article>
+
+        </main>
+
+        <footer class="social-media">
+            <a href="https://www.facebook.com"><img src="images/facebook-icon.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com"><img src="images/instagram-icon.png" alt="Instagram"></a>
+            <a href="https://twitter.com"><img src="images/twitter-icon.png" alt="Twitter"></a>
+        </footer>
+    </div>
+</body>
+
+</html>

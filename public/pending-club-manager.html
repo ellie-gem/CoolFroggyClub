@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Club Manager Approval Pending</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pending-club-manager.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="javascripts/admin_dashboard.js" defer></script>
+</head>
+
+<body>
+    <div id="coolfroggyclub">
+        <nav>
+            <div class="nav-container">
+                <span><a href="index.html" class="logo"><img src="images/CoolFroggyLogo.png"
+                            alt="Cool Froggy Club logo"></a></span>
+
+                <div class="nav-menu">
+                    <div><a href="about-us.html">About us</a></div>
+                    <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                    <div><a href="latest-news.html">Latest News</a></div>
+                    <div><a href="join-a-club.html">Join A Club</a></div>
+                </div>
+
+                <button type="button" v-bind:class="menu" @click="toggleMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div v-bind:class="dropdown">
+                <div><a href="about-us.html">About us</a></div>
+                <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                <div><a href="latest-news.html">Latest News</a></div>
+                <div><a href="join-a-club.html">Join A Club</a></div>
+            </div>
+        </nav>
+
+        <div aria-label="Breadcrumb" class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin-profile.html">Admin Profile</a></li>
+                <li><span aria-current="page">Club Manager Approval Pending</span></li>
+            </ul>
+        </div>
+
+        <main>
+            <article class="pendingform">
+                <h1>Club Manager Approval Pending</h1>
+                <br>
+
+                <!-- -------------------Pending Message for Club Manager Application------------------------ -->
+                <form>
+                    <div class="pending-content">
+                        <div class="pending-list">
+                            <div class="indv-message" v-for="(club, index) in pending_clubs">
+                                <span class="application">{{ club.club_name }}</span>
+                                <span class="application">{{ club.manager_first_name + ' ' +  club.manager_last_name}}</span>
+                                <span class="application">{{ club.manager_email }}</span>
+                                <div><span class="application">{{ club.club_description }}</span></div>
+                                <div><span class="application">{{ club.email }}</span></div>
+
+                                <div class="button">
+                                    <button type="button" class="approve-button" title="approve=button" v-on:click="approve_club(index)">
+                                        <img src="images/approve.png" alt="Approve" class="approve-icon">
+                                    </button>
+                                    <button type="button" class="reject-button" title="reject-button" v-on:click="reject_club(index)">
+                                        <img src="images/reject.png" alt="Reject" class="reject-icon">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </article>
+
+        </main>
+
+        <footer class="social-media">
+            <a href="https://www.facebook.com"><img src="images/facebook-icon.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com"><img src="images/instagram-icon.png" alt="Instagram"></a>
+            <a href="https://twitter.com"><img src="images/twitter-icon.png" alt="Twitter"></a>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,510 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------------------------- NAVIGATION ------------------------------ */
+.nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background-color: #EDF1D6;
+    /* padding: 20px; */
+}
+
+.nav-menu {
+    display: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.nav-menu div {
+    list-style: none;
+    margin: 0 20px;
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+nav a {
+    color: #40513B;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    text-align: center;
+}
+
+nav a:hover {
+    color: #609966;
+}
+
+.logo {
+    margin-right: 20px;
+    padding: 20px;
+}
+
+.logo img {
+    height: 100px;
+}
+
+.login {
+    margin-left: auto;
+}
+
+
+.login a {
+    background-color: #609966;
+    color: #EDF1D6;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.2s;
+    white-space: nowrap;/* to make sure the button won't change when window resized */
+    width: 100%;
+    text-align: center;
+}
+
+.login a:hover {
+    background-color: #9DC08B;
+}
+
+.login button {
+    background-color: #609966;
+    color: #EDF1D6;
+    padding: 10px 20px;
+    border-style: none;
+    /* border-color:#609966; */
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.2s;
+    white-space: nowrap;/* to make sure the button won't change when window resized */
+    width: 100%;
+    text-align: center;
+}
+
+.login button:hover {
+    background-color: #9DC08B;
+}
+
+.account-dropdown {
+    display: none;
+    position: absolute;
+    top: 90px;
+    z-index: 1;
+    list-style: none;
+}
+
+.account-dropdown-item {
+    display: block;
+    padding: 8px;
+    /* background-color: ; */
+}
+
+.not-manager {
+    display: none;
+  }
+
+.login:hover .account-dropdown, .account-dropdown:hover {
+    display: block;
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+    z-index: 1;
+
+    user-select: none;
+
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    padding: 20px;
+}
+
+.hamburger span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+
+    background-color: black;
+    border-radius: 6px;
+    z-index: 1;
+
+    transform-origin: 0 0;
+
+    transition: 0.4s;
+}
+
+.hamburger:hover span:nth-child(2) {
+    transform: translateX(10px);
+    background-color: #40513B;
+}
+
+.hamburger.is-active span:nth-child(1) {
+    transform: translate(0px, -2px) rotate(45deg);
+}
+
+.hamburger.is-active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(15px);
+}
+
+.hamburger.is-active span:nth-child(3) {
+    transform: translate(-3px, 3px) rotate(-45deg);
+}
+
+.hamburger.is-active:hover span {
+    background-color: #40513B;
+}
+
+/* ------------------ DROPDOWN MENU --------------------- */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 100px;
+    width: 250px;
+    background: rgba(237, 241, 214, 0.4);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: visible;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown-menu.open {
+    display: block;
+}
+
+.dropdown-menu div {
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown-menu .login {
+    width: 100%;
+}
+
+.dropdown-menu .login .account-dropdown-item2 {
+    display: block;
+}
+
+.account-dropdown-2 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 250px;
+    list-style: none;
+    padding: 0.7rem;
+    background: rgba(237, 241, 214, 0.4);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+}
+
+.account-dropdown-2 li {
+    padding: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.login:hover .account-dropdown-2, .account-dropdown-2:hover {
+    display: block;
+}
+
+/*------------------------------------------------------*/
+
+@media (min-width: 835px) {
+    .hamburger {
+        display: none;
+    }
+    .nav-menu {
+        display: flex;
+
+    }
+    .dropdown-menu.open {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .dropdown-menu {
+        left: 20px;
+        top: auto;
+        width: unset; /* sets the width to inherit or initial ie the nav-container width */
+    }
+    .account-dropdown-2 {
+        width: inherit;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------*/
+
+/* Set default font and background color */
+body {
+    /* display: inline-flexbox; */
+    width: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #FFFFFF;
+    color: #000000;
+    height: 100vh;
+}
+
+main {
+    margin: auto;
+    min-height: 100vh;
+    /* padding-top: 60px;
+    padding-bottom: 60px; */
+}
+
+/* -------------------------------------- Slideshow container ------------------------------------ */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dots-container {
+    text-align: center;
+    margin: 5px 0px 5px 0px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 3px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/* .center {
+    max-width: 1280px;
+    margin: 0px 40px 0px 40px;
+} */
+
+/* Style the upcoming events section */
+.upcoming-events {
+    background-color: #9DC08B;
+    padding: 20px;
+    margin-bottom: 50px;
+    /* display: flex;
+    justify-content: center; */
+}
+
+/* Style the latest news section */
+.latest-news {
+    background-color: #609966;
+    padding: 20px;
+    margin-bottom: 50px;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.upcoming-events h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.upcoming-events ul {
+    list-style: none;
+}
+
+.upcoming-events li {
+    margin-bottom: 10px;
+}
+
+.upcoming-events a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.upcoming-events a:hover {
+    color: #609966;
+}
+
+.latest-news h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.latest-news ul {
+    list-style: none;
+}
+
+.latest-news li {
+    margin-bottom: 20px;
+}
+
+.latest-news h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.latest-news p {
+    font-size: 16px;
+}
+
+/* Style the gallery section */
+.gallery {
+    background-color: #EDF1D6;
+    padding: 20px;
+    margin-bottom: 50px;
+}
+
+.gallery h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.gallery ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+}
+
+.gallery li {
+    margin: 10px;
+}
+
+.gallery img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+
+/* --------------------------- Footer -----------------------------------------------*/
+
+footer {
+    position: relative;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #40513B;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+footer img {
+    height: 30px;
+    margin: 0 10px;
+}

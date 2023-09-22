@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Signup as Club Manager</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheets/signup-club-manager.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="javascripts/signin.js" defer></script>
+</head>
+
+<body>
+    <div id="signin">
+        <nav>
+            <div class="nav-container">
+                <span><a href="index.html" class="logo"><img src="images/CoolFroggyLogo.png" alt="Cool Froggy Club logo"></a></span>
+
+                <div class="nav-menu">
+                    <div><a href="about-us.html">About us</a></div>
+                    <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                    <div><a href="latest-news.html">Latest News</a></div>
+                    <div><a href="join-a-club.html">Join A Club</a></div>
+                </div>
+
+                <button type="button" v-bind:class="menu" @click="toggleMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div v-bind:class="dropdown">
+                <div><a href="about-us.html">About us</a></div>
+                <div><a href="upcoming-events.html">Upcoming Events</a></div>
+                <div><a href="latest-news.html">Latest News</a></div>
+                <div><a href="join-a-club.html">Join A Club</a></div>
+            </div>
+        </nav>
+
+        <div aria-label="Breadcrumb" class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="member-profile.html">Profile</a></li>
+                <li><span aria-current="page">Sign Up (Club Manger)</span></li>
+            </ul>
+        </div>
+
+        <main>
+            <article class="signuppage">
+                <h1>Sign Up (Club Manager)</h1>
+                <br>
+
+                <!-- -------------------LINK BACK TO LOGIN PAGE AFTER SIGNING UP------------------------ -->
+                <form v-on:submit.prevent="signup_clubmanager()">
+                    <label for="club-name">Club Name:</label>
+                    <input type="text" id="club-name" name="club-name" v-model="club_name" required>
+
+                    <label for="email">Club Email:</label>
+                    <input type="email" id="club-email" name="club-email" v-model="club_email" required>
+
+                    <label for="club-info">Club Description:</label>
+                    <input type="text" id="club-info" name="club-info" v-model="club_description" required>
+
+                    <input type="submit" value="Submit">
+                </form>
+
+            </article>
+
+        </main>
+
+        <footer class="social-media">
+            <a href="https://www.facebook.com"><img src="images/facebook-icon.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com"><img src="images/instagram-icon.png" alt="Instagram"></a>
+            <a href="https://twitter.com"><img src="images/twitter-icon.png" alt="Twitter"></a>
+        </footer>
+    </div>
+</body>
+
+</html>

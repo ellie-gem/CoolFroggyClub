@@ -1,0 +1,394 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------------------------- NAVIGATION ------------------------------ */
+.nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: #EDF1D6;
+    /* padding: 20px; */
+}
+
+.nav-menu {
+    display: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.nav-menu div {
+    list-style: none;
+    margin: 0 20px;
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+nav a {
+    color: #40513B;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    text-align: center;
+}
+
+nav a:hover {
+    color: #609966;
+}
+
+.logo {
+    margin-right: 20px;
+    padding: 20px;
+}
+
+.logo img {
+    height: 100px;
+}
+
+.account-dropdown {
+    display: none;
+    position: absolute;
+    top: 90px;
+    z-index: 1;
+    list-style: none;
+}
+
+.account-dropdown-item {
+    display: block;
+    padding: 8px;
+    /* background-color: ; */
+}
+
+.login:hover .account-dropdown, .account-dropdown:hover {
+    display: block;
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+    z-index: 1;
+
+    user-select: none;
+
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    padding: 20px;
+}
+
+.hamburger span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+
+    background-color: black;
+    border-radius: 6px;
+    z-index: 1;
+
+    transform-origin: 0 0;
+
+    transition: 0.4s;
+}
+
+.hamburger:hover span:nth-child(2) {
+    transform: translateX(10px);
+    background-color: #40513B;
+}
+
+.hamburger.is-active span:nth-child(1) {
+    transform: translate(0px, -2px) rotate(45deg);
+}
+
+.hamburger.is-active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(15px);
+}
+
+.hamburger.is-active span:nth-child(3) {
+    transform: translate(-3px, 3px) rotate(-45deg);
+}
+
+.hamburger.is-active:hover span {
+    background-color: #40513B;
+}
+
+/* ------------------ DROPDOWN MENU --------------------- */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 100px;
+    width: 250px;
+    background: rgba(237, 241, 214, 0.4);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: visible;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown-menu.open {
+    display: block;
+}
+
+.dropdown-menu div {
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 835px) {
+    .hamburger {
+        display: none;
+    }
+    .nav-menu {
+        display: flex;
+
+    }
+    .dropdown-menu.open {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .dropdown-menu {
+        left: 20px;
+        top: auto;
+        width: unset; /* sets the width to inherit or initial ie the nav-container width */
+    }
+}
+
+/* ----------------- for nav bar breadcrumbing --------------------*/
+div.breadcrumb {
+    font-size: small;
+    max-width: 1280px;
+    padding: 20px 40px 0px 40px;
+    margin: auto;
+}
+
+div.breadcrumb ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+div.breadcrumb li:not(:last-child)::after {
+    margin: 0 .25rem;
+    content: "→";
+}
+
+/* Set default font and background color */
+body {
+    /* display: inline-flexbox; */
+    width: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+main {
+    margin: auto;
+    padding: 40px 0px 60px 0px;
+}
+
+/* -------------------- SIGN UP PAGE ------------------------- */
+.signuppage {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 10px;
+    font-family: sans-serif;
+    font-size: 20;
+    color: grey;
+    font-weight: 550;
+}
+
+input, select {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: sans-serif;
+    font-size: medium;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+div .message-hide {
+    display: none;
+}
+
+div .message-show {
+    display: block;
+    border: 1px solid #ccc;
+    padding: 1rem;
+	width: 100%;
+    border-radius: 10px;
+    font-size: small;
+    margin-bottom: 20px;
+    background-color: #fdfae7;
+    transition-duration:600ms;
+}
+
+div .message-show h3 {
+    padding: 5px;
+}
+
+div .message-show p {
+    padding: 5px;
+    margin-left: 4%;
+}
+
+#set {
+    display: flex;
+    justify-content: space-between;
+    position:relative;
+    margin:auto;
+}
+
+/* for the eye icon */
+i {
+    font-size: 18px;
+    transition-duration:600ms;
+}
+
+#no-see {
+    display: inline-block;
+    color:gray;
+    margin:auto;
+    /* float: right; */
+    transition-duration:0.2s;
+    cursor: pointer;
+}
+
+#see {
+    display: inline-block;
+    color: #262626;
+    margin:auto;
+    /* float: right; */
+    transition-duration:0.2s;
+    cursor: pointer;
+}
+
+input:invalid {
+    border-color: #900;
+    background-color: #fdd;
+}
+
+input:focus:invalid {
+    outline: none;
+}
+
+
+input:invalid:required {
+    border-color: #900;
+    /* background-image: linear-gradient(to right, pink, lightgreen); */
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    content: "✔ ";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    content: "✖ ";
+}
+
+.sign-up-manager {
+    background-color: #40513B;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: medium;
+    text-decoration: none;
+    position: absolute;
+    top: 160px;
+    right: 30px;
+    z-index: 1;
+}
+
+.sign-up-manager:hover {
+    background-color:#566d4f;
+}
+
+footer {
+    position: static;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #40513B;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+footer img {
+    height: 30px;
+    margin: 0 10px;
+}
