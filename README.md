@@ -1,8 +1,24 @@
 # Group Repository for COMP SCI 2207/7207 Web & Database Computing Web Application Project (2023 Semester 1)
 
 A club management system that allows users to browse available clubs, enrol into clubs and events, and receive email notifications on subscribed club notifications. 
-If you are a club manager, you can create and manage club events, manage club members, and also sign up as a member to other clubs and their events. 
-As an admin, you can manage and approve club managers.
+
+### Admins usage: 
+- approve and manage club managers through new club applications, subsequently approving or deleting a club via the admin dashboard
+### Club managers usage:
+- an extension of club members (includes all club members functionalities)
+- post private or public club announcements
+- create and manage private or public club events
+- approve or remove club members via their manager dashboard
+- normal member dashboard is also available for club managers so that they can opt to sign up to be a member for other clubs without using a different account
+### Club members usage: 
+- request to join multiple clubs
+- browse private & public club announcements and events that they have a membership in
+- browse public club announcements and events that they are not members in via events list or club's dashboard
+- opt to subscribe to club notifications via personal email, viewable through email or personal dashboard
+### General user:
+- view public, past & future club announcements and events
+- when joining a club or event, will be redirected to the login page
+- sign up page has functionalities to sign up through Google login (OAuth) or directly through the web page, with password authentication and validation featuresCollaborated
 
 ## Information on how to run our work
 - Ensure that you have Docker Desktop installed.
