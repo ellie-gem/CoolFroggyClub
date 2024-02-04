@@ -1,4 +1,4 @@
-# Group Repository for COMP SCI 2207/7207 Web & Database Computing Web Application Project (2023 Semester 1)
+# Web & Database Computing Web Application Project (2023 Semester 1)
 
 A club management system that allows users to browse available clubs, enrol into clubs and events, and receive email notifications on subscribed club notifications. 
 
